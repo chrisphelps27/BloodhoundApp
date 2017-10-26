@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Bloodhound App</string>
+    <string name="app_name">Bloodhound</string>
+    <string name="starter_message">Please select a function</string>
+    <string name="act_as_id">Act as ID</string>
+    <string name="act_as_loc">Act as Check-in Location</string>
+    <string name="write_id">Write to ID</string>
 </resources>
