@@ -8,7 +8,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
-        android:text="Location Activity" />
+        android:text="Send Activity" />
 
     <Button
         android:id="@+id/button"
