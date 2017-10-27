@@ -17,6 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LocActivity">
+        </activity>
+        <activity android:name=".WriteActivity">
+        </activity>
+        <activity android:name=".SendActivity">
+        </activity>
     </application>
 
 </manifest>
