@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/explanation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -11,12 +11,33 @@
         android:layout_marginTop="52dp"
         android:text="Write Activity" />
 
+    <!-- This button is mainly a placeholder until we have a better navigation system between activities -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/explanation"
+        android:layout_below="@+id/explanation"
         android:layout_marginTop="38dp"
         android:text="Go Back" />
+
+    <Button
+        android:id="@+id/write_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="132dp"
+        android:text="Write Tag" />
+
+    <EditText
+        android:id="@+id/writing_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/write_tag"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="Name for ID"
+        android:inputType="textPersonName" />
 </RelativeLayout>
