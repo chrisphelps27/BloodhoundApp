@@ -14,7 +14,6 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO change this to the correct activity once created
         setContentView(R.layout.activity_send);
 
         Button btn = (Button) findViewById(R.id.button);
