@@ -42,6 +42,10 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         writeTagBtn.setOnClickListener(this);
     }
 
+    /*
+     * Handles all the buttons of the class
+     * Currently handles back button and writing tag button
+     */
     @Override
     public void onClick(View v){
         //runs a switch based on button ID
@@ -52,6 +56,11 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.write_tag:
+                /*
+                 * Case handles writing to tags
+                 * Creates new intents and then enables write mode
+                 * Creates dialog box that instructs user and when closed disables write mode
+                 */
                 mNfcAdapter = NfcAdapter.getDefaultAdapter(WriteActivity.this);
                 mNfcPendingIntent = PendingIntent.getActivity(WriteActivity.this, 0,
                         new Intent(WriteActivity.this, WriteActivity.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
