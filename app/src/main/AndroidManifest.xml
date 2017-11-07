@@ -18,6 +18,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".LocActivity">
+            <!--<intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/id" />
+            </intent-filter>-->
+
         </activity>
         <activity android:name=".WriteActivity">
         </activity>

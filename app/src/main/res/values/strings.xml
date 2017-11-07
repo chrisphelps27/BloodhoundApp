@@ -4,4 +4,5 @@
     <string name="act_as_id">Act as ID</string>
     <string name="act_as_loc">Act as Check-in Location</string>
     <string name="write_id">Write to ID</string>
+    <string name="loc_explanation">Tap phone to check-in or out of this location</string>
 </resources>

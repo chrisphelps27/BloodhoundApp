@@ -103,7 +103,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         // Tag writing mode
         if (mWriteMode && NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
             Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            NdefRecord record = NdefRecord.createMime( "text/id", writingText.getText().toString().getBytes());
+            NdefRecord record = NdefRecord.createMime( "text/plain", writingText.getText().toString().getBytes());
             NdefMessage message = new NdefMessage(new NdefRecord[] { record });
             if (writeTag(message, detectedTag)) {
                 Toast.makeText(this, "Success: Wrote to nfc tag", Toast.LENGTH_LONG)
