@@ -18,14 +18,25 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+
+import static android.R.attr.id;
+import static android.os.Build.ID;
 
 /**
  * Created by phelps47387 on 10/26/2017.
  */
 
-public class LocActivity  extends AppCompatActivity implements View.OnClickListener {
+public class LocActivity extends AppCompatActivity implements View.OnClickListener {
+    public static String resopnse;
 
     public static final String MIME_TEXT_ID = "text/plain";
     public static final String TAG = "NfcDemo";
@@ -101,7 +112,14 @@ public class LocActivity  extends AppCompatActivity implements View.OnClickListe
             if (MIME_TEXT_ID.equals(type)) {
 
                 Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-                new NdefReaderTask().execute(tag);
+                try {
+                    if ((resopnse = new NdefReaderTask().execute(tag).get()) != null) {
+                        String HI = new connection().execute("tagOut.php", "i=" + resopnse, "http://gw.mvctc.com/Class2018/smcintosh/UNHACKABLE/").get();
+                        Log.d("Bloodhound", "hi" + HI);
+                    }
+                } catch (Exception e) {
+                }
+
 
             } else {
                 Log.d(TAG, "Wrong mime type: " + type);
@@ -115,7 +133,13 @@ public class LocActivity  extends AppCompatActivity implements View.OnClickListe
 
             for (String tech : techList) {
                 if (searchedTech.equals(tech)) {
-                    new NdefReaderTask().execute(tag);
+                    try {
+                        if ((resopnse = new NdefReaderTask().execute(tag).get()) != null) {
+                            String HI = new connection().execute("tagOut.php", "i=" + resopnse, "http://gw.mvctc.com/Class2018/smcintosh/UNHACKABLE/").get();
+                            Log.d("Bloodhound", "hi" + HI);
+                        }
+                    } catch (Exception e) {
+                    }
                     break;
                 }
             }
@@ -124,7 +148,7 @@ public class LocActivity  extends AppCompatActivity implements View.OnClickListe
 
     /**
      * @param activity The corresponding {@link Activity} requesting the foreground dispatch.
-     * @param adapter The {@link NfcAdapter} used for the foreground dispatch.
+     * @param adapter  The {@link NfcAdapter} used for the foreground dispatch.
      */
     public static void setupForegroundDispatch(final Activity activity, NfcAdapter adapter) {
         final Intent intent = new Intent(activity.getApplicationContext(), activity.getClass());
@@ -150,12 +174,11 @@ public class LocActivity  extends AppCompatActivity implements View.OnClickListe
 
     /**
      * @param activity The corresponding {@link LocActivity} requesting to stop the foreground dispatch.
-     * @param adapter The {@link NfcAdapter} used for the foreground dispatch.
+     * @param adapter  The {@link NfcAdapter} used for the foreground dispatch.
      */
     public static void stopForegroundDispatch(final Activity activity, NfcAdapter adapter) {
         adapter.disableForegroundDispatch(activity);
     }
-
 
 
     private class NdefReaderTask extends AsyncTask<Tag, Void, String> {
@@ -197,19 +220,19 @@ public class LocActivity  extends AppCompatActivity implements View.OnClickListe
 
         @Override
         protected void onPostExecute(String result) {
-            if (result != null) {
-                mTextView.setText("Read content: " + result);
-                Toast.makeText(LocActivity.this, "Content: " + result, Toast.LENGTH_LONG).show();
-            }
-            else{
-                Toast.makeText(LocActivity.this, "Results null", Toast.LENGTH_LONG).show();
-            }
+            /*try {
+                String HI = new connection().execute("tagOut.php", "i=" + result, "http://gw.mvctc.com/Class2018/smcintosh/UNHACKABLE/").get();
+            } catch (Exception e) {
+            }*/
         }
     }
-    @Override
-    public void onClick(View v){
 
-        switch(v.getId()){
+
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
             case R.id.button:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
