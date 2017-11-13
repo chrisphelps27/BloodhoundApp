@@ -13,11 +13,42 @@
         android:text="Back" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/locationList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/back"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="71dp"
-        android:text="TextView" />
+        android:maxLines="25"
+        android:scrollbars="vertical"
+        android:text="@string/nfc_disabled" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/remove"
+        style="?android:attr/buttonStyleSmall"
+        android:visibility="invisible"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/remove"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/createGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:text="Create Group" />
 </RelativeLayout>
