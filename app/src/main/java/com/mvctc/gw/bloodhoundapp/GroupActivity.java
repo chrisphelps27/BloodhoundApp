@@ -44,13 +44,36 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
         }
         else{ //if they have card emulation set up
-            int groupID = 0; //TODO set this to the users' group ID, if they don't have one keep it at 0
-            if(groupID == 0){ //TODO make this check if they're already in a group
-                ArrayList<Integer> groupMemIDs = new ArrayList<Integer>(); //TODO fill this array with the users in the groupID
-            }
-            else{ //if they're not in a group
-                //TODO add option to create group or instructions in joining a group
-            }
+            try {
+                int groupID = Integer.parseInt(new connection().execute("getGroup.php", "i=" + id).get());
+                if (groupID != 2) { // make this check if they're already in a group
+                    ArrayList<Integer> groupMemIDs = new ArrayList<Integer>();
+                    String response = new connection().execute("groupTrackingAccess.php", "i="+id).get();
+                    for (int x = 0; x < response.length(); x++){
+                        String idTemp = "";
+                        while (response.charAt(x) != ','){
+                            idTemp += response.charAt(x);
+                            x++;
+                        }
+                        groupMemIDs.add(Integer.parseInt(idTemp));
+                    }
+                } else { //if they're not in a group
+                    //create
+                    String response = new connection().execute("createGroup.php", "i="+id).get();
+                    if (Integer.parseInt(response) == 1){
+                        //Success
+                    } else {
+                        //Failure
+                    }
+                    //join
+                    response = new connection().execute("joinGroup.php", "i=" + id).get();
+                    if (Integer.parseInt(response) == 1){
+                        //Success
+                    } else {
+                        //Failure
+                    }
+                }
+            } catch (Exception e){}
         }
     }
 
