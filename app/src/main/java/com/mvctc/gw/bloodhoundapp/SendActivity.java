@@ -16,7 +16,7 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
 
-        Button btn = (Button) findViewById(R.id.button);
+        Button btn = (Button) findViewById(R.id.back);
         btn.setOnClickListener(this);
     }
 
@@ -27,7 +27,7 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 
         //runs a switch based on button ID and sets the intent accordingly
         switch(v.getId()){
-            case R.id.button:
+            case R.id.back:
                 intent = new Intent(this, MainActivity.class);
                 break;
             default:

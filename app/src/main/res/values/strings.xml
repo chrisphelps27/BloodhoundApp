@@ -5,4 +5,6 @@
     <string name="act_as_loc">Act as Check-in Location</string>
     <string name="write_id">Write to ID</string>
     <string name="loc_explanation">Tap phone to check-in or out of this location</string>
+    <string name="nfc_missing">Your device does not support NFC</string>
+    <string name="nfc_disabled">You must enable NFC on your device</string>
 </resources>

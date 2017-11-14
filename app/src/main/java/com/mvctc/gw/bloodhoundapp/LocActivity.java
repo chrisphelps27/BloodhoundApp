@@ -30,6 +30,7 @@ import java.util.Arrays;
 
 import static android.R.attr.id;
 import static android.os.Build.ID;
+import static android.support.v7.widget.AppCompatDrawableManager.get;
 
 /**
  * Created by phelps47387 on 10/26/2017.
@@ -57,14 +58,14 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
 
         if (mNfcAdapter == null) {
             // Stops if there is no NFC
-            Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.nfc_missing, Toast.LENGTH_LONG).show();
             finish();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 
         if (!mNfcAdapter.isEnabled()) {
-            mTextView.setText("NFC is disabled.");
+            mTextView.setText(R.string.nfc_disabled);
         } else {
             mTextView.setText(R.string.loc_explanation);
         }
@@ -114,8 +115,12 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
                 Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 try {
                     if ((resopnse = new NdefReaderTask().execute(tag).get()) != null) {
-                        String HI = new connection().execute("tagOut.php", "i=" + resopnse, "http://gw.mvctc.com/Class2018/smcintosh/UNHACKABLE/").get();
-                        Log.d("Bloodhound", "hi" + HI);
+                        String result = new connection().execute("getCurr.php", "i=" + resopnse).get();
+                        if (result = /*this location*/) {
+                            result = new connection().execute("tagOut.php", "i=" + resopnse).get();
+                        } else {
+                            result = new connection().execute("tagIn.php", "i=" + resopnse + "&e= " + /*eco*/ + "&l=" + /*loc*/).get();
+                        }
                     }
                 } catch (Exception e) {
                 }
@@ -135,8 +140,12 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
                 if (searchedTech.equals(tech)) {
                     try {
                         if ((resopnse = new NdefReaderTask().execute(tag).get()) != null) {
-                            String HI = new connection().execute("tagOut.php", "i=" + resopnse, "http://gw.mvctc.com/Class2018/smcintosh/UNHACKABLE/").get();
-                            Log.d("Bloodhound", "hi" + HI);
+                            String result = new connection().execute("getCurr.php", "i=" + resopnse).get();
+                            if (result = /*this location*/) {
+                                result = new connection().execute("tagOut.php", "i=" + resopnse).get();
+                            } else {
+                                result = new connection().execute("tagIn.php", "i=" + resopnse + "&e= " + /*eco*/ + "&l=" + /*loc*/).get();
+                            }
                         }
                     } catch (Exception e) {
                     }
@@ -226,8 +235,6 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
             }*/
         }
     }
-
-
 
     @Override
     public void onClick(View v) {
