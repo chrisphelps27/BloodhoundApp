@@ -14,7 +14,7 @@
         android:layout_height="31dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="serif"
         android:text="@string/starter_message"
         android:textAlignment="center"
@@ -23,54 +23,47 @@
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/write_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/write_id"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/act_as_loc"
         android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/act_as_loc"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/act_as_loc" />
+        android:text="@string/write_id"
+        app:layout_constraintBottom_toTopOf="@+id/act_as_loc"
+        app:layout_constraintLeft_toLeftOf="@+id/act_as_loc"
+        app:layout_constraintRight_toRightOf="@+id/act_as_loc" />
 
     <Button
         android:id="@+id/act_as_loc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/act_as_loc"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/act_as_loc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintVertical_bias="0.498" />
 
     <Button
         android:id="@+id/act_as_id"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:text="@string/act_as_id"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/act_as_loc"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/act_as_id"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="@+id/act_as_loc"
-        app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        app:layout_constraintRight_toRightOf="@+id/act_as_loc"
         app:layout_constraintTop_toBottomOf="@+id/act_as_loc" />
 
 </android.support.constraint.ConstraintLayout>
