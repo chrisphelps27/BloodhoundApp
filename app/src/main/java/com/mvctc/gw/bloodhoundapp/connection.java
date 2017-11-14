@@ -20,7 +20,7 @@ public class connection extends AsyncTask<String, String, String> {
     protected String doInBackground(String... Data) {
         String responseString = "";
         try {
-            String app = "Bloodhound", page = Data[0], content = Data[1], directory = Data[2];
+            String app = "Bloodhound", page = Data[0], content = Data[1], directory = "http://gw.mvctc.com/Class2018/smcintosh/UNHACKABLE/";
             Log.e(app, page + content);
             // HttpURLConnection urlConnection = (HttpURLConnection)
             // url.openConnection();
