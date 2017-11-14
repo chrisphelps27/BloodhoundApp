@@ -58,14 +58,14 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
 
         if (mNfcAdapter == null) {
             // Stops if there is no NFC
-            Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.nfc_missing, Toast.LENGTH_LONG).show();
             finish();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 
         if (!mNfcAdapter.isEnabled()) {
-            mTextView.setText("NFC is disabled.");
+            mTextView.setText(R.string.nfc_disabled);
         } else {
             mTextView.setText(R.string.loc_explanation);
         }

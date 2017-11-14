@@ -37,7 +37,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
-        Button btn = (Button) findViewById(R.id.button);
+        Button btn = (Button) findViewById(R.id.back);
         btn.setOnClickListener(this);
 
         Button writeTagBtn = (Button) findViewById(R.id.write_tag);
@@ -52,7 +52,7 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v){
         //runs a switch based on button ID
         switch(v.getId()){
-            case R.id.button:
+            case R.id.back:
                 Intent intent = new Intent(this, MainActivity.class);
                 //switches to according activity
                 startActivity(intent);

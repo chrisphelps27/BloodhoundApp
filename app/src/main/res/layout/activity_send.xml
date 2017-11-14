@@ -11,11 +11,11 @@
         android:text="Send Activity" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/explanation"
         android:layout_below="@+id/explanation"
         android:layout_marginTop="38dp"
-        android:text="Go Back" />
+        android:text="Back" />
 </RelativeLayout>
