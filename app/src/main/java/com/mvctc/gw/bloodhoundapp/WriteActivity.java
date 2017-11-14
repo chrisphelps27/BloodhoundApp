@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import static android.R.attr.id;
+
 /**
  * Created by phelps47387 on 10/26/2017.
  */
@@ -102,12 +104,17 @@ public class WriteActivity extends AppCompatActivity implements View.OnClickList
         TextView writingText = (TextView) findViewById(R.id.writing_name);
         // Tag writing mode
         if (mWriteMode && NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())) {
-            Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
-            NdefRecord record = NdefRecord.createMime( "text/plain", writingText.getText().toString().getBytes());
-            NdefMessage message = new NdefMessage(new NdefRecord[] { record });
-            if (writeTag(message, detectedTag)) {
-                Toast.makeText(this, "Success: Wrote to nfc tag", Toast.LENGTH_LONG)
-                        .show();
+            try {
+                String id = new connection().execute("GenUser.php", "n=" + writingText.getText().toString()).get();
+                Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+                NdefRecord record = NdefRecord.createMime( "text/plain", id.getBytes());
+                NdefMessage message = new NdefMessage(new NdefRecord[] { record });
+                if (writeTag(message, detectedTag)) {
+                    Toast.makeText(this, "Success: Wrote to nfc tag", Toast.LENGTH_LONG)
+                            .show();
+                }
+            }catch (Exception e){
+
             }
         }
     }
