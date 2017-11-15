@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import java.util.Arrays;
 import static android.R.attr.id;
 import static android.os.Build.ID;
 import static android.support.v7.widget.AppCompatDrawableManager.get;
+import static com.mvctc.gw.bloodhoundapp.FileManager.GetData;
 
 /**
  * Created by phelps47387 on 10/26/2017.
@@ -44,6 +46,7 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
 
     private TextView mTextView;
     private NfcAdapter mNfcAdapter;
+    private EditText Eco, Loc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,9 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_location);
 
         Button btn = (Button) findViewById(R.id.button);
+        Button btn2 = (Button) findViewById(R.id.Start);
         btn.setOnClickListener(this);
-
+        btn2.setOnClickListener(this);
         mTextView = (TextView) findViewById(R.id.explanation);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -116,10 +120,14 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
                 try {
                     if ((resopnse = new NdefReaderTask().execute(tag).get()) != null) {
                         String result = new connection().execute("getCurr.php", "i=" + resopnse).get();
-                        if (result = /*this location*/) {
+                        Integer[] data = FileManager.GetData(this);
+                        String address = data[0] + "." + data[1];
+                        Log.d("Bloodhound", "Result = " + result);
+                        Log.d("Bloodhound", "Address = " + address);
+                        if (result.equals(address)) {
                             result = new connection().execute("tagOut.php", "i=" + resopnse).get();
                         } else {
-                            result = new connection().execute("tagIn.php", "i=" + resopnse + "&e= " + /*eco*/ + "&l=" + /*loc*/).get();
+                            result = new connection().execute("tagIn.php", "i=" + resopnse + "&e= " + data[0] + "&l=" + data[1]).get();
                         }
                     }
                 } catch (Exception e) {
@@ -141,10 +149,14 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
                     try {
                         if ((resopnse = new NdefReaderTask().execute(tag).get()) != null) {
                             String result = new connection().execute("getCurr.php", "i=" + resopnse).get();
-                            if (result = /*this location*/) {
+                            Integer[] data = FileManager.GetData(this);
+                            String address = data[0] + "." + data[1];
+                            Log.d("Bloodhound", "Result = " + result);
+                            Log.d("Bloodhound", "Address = " + address);
+                            if (result.equals(address)) {
                                 result = new connection().execute("tagOut.php", "i=" + resopnse).get();
                             } else {
-                                result = new connection().execute("tagIn.php", "i=" + resopnse + "&e= " + /*eco*/ + "&l=" + /*loc*/).get();
+                                result = new connection().execute("tagIn.php", "i=" + resopnse + "&e= " + data[0] + "&l=" + data[1]).get();
                             }
                         }
                     } catch (Exception e) {
@@ -243,6 +255,13 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.button:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.Start:
+                Eco = (EditText) findViewById(R.id.Ecosystem);
+                Loc = (EditText) findViewById(R.id.Location);
+                Log.d("Bloodhound", "Starting");
+                FileManager.FileWrite(Integer.parseInt(Eco.getText().toString()), Integer.parseInt(Loc.getText().toString()), 000000, this); //000000 represents no stored ID
+                Log.d("Bloodhound", "Wrote");
                 break;
         }
 
