@@ -19,27 +19,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-
-import static android.R.attr.id;
-import static android.os.Build.ID;
-import static android.support.v7.widget.AppCompatDrawableManager.get;
-import static com.mvctc.gw.bloodhoundapp.FileManager.GetData;
 
 /**
  * Created by phelps47387 on 10/26/2017.
  */
 
 public class LocActivity extends AppCompatActivity implements View.OnClickListener {
-    public static String resopnse;
+    public static String response;
 
     public static final String MIME_TEXT_ID = "text/plain";
     public static final String TAG = "NfcDemo";
@@ -118,16 +105,16 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
 
                 Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 try {
-                    if ((resopnse = new NdefReaderTask().execute(tag).get()) != null) {
-                        String result = new connection().execute("getCurr.php", "i=" + resopnse).get();
+                    if ((response = new NdefReaderTask().execute(tag).get()) != null) {
+                        String result = new connection().execute("getCurr.php", "i=" + response).get();
                         Integer[] data = FileManager.GetData(this);
                         String address = data[0] + "." + data[1];
                         Log.d("Bloodhound", "Result = " + result);
                         Log.d("Bloodhound", "Address = " + address);
                         if (result.equals(address)) {
-                            result = new connection().execute("tagOut.php", "i=" + resopnse).get();
+                            result = new connection().execute("tagOut.php", "i=" + response).get();
                         } else {
-                            result = new connection().execute("tagIn.php", "i=" + resopnse + "&e= " + data[0] + "&l=" + data[1]).get();
+                            result = new connection().execute("tagIn.php", "i=" + response + "&e= " + data[0] + "&l=" + data[1]).get();
                         }
                     }
                 } catch (Exception e) {
@@ -147,16 +134,16 @@ public class LocActivity extends AppCompatActivity implements View.OnClickListen
             for (String tech : techList) {
                 if (searchedTech.equals(tech)) {
                     try {
-                        if ((resopnse = new NdefReaderTask().execute(tag).get()) != null) {
-                            String result = new connection().execute("getCurr.php", "i=" + resopnse).get();
+                        if ((response = new NdefReaderTask().execute(tag).get()) != null) {
+                            String result = new connection().execute("getCurr.php", "i=" + response).get();
                             Integer[] data = FileManager.GetData(this);
                             String address = data[0] + "." + data[1];
                             Log.d("Bloodhound", "Result = " + result);
                             Log.d("Bloodhound", "Address = " + address);
                             if (result.equals(address)) {
-                                result = new connection().execute("tagOut.php", "i=" + resopnse).get();
+                                result = new connection().execute("tagOut.php", "i=" + response).get();
                             } else {
-                                result = new connection().execute("tagIn.php", "i=" + resopnse + "&e= " + data[0] + "&l=" + data[1]).get();
+                                result = new connection().execute("tagIn.php", "i=" + response + "&e= " + data[0] + "&l=" + data[1]).get();
                             }
                         }
                     } catch (Exception e) {

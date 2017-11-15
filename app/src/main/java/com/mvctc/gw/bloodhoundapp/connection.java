@@ -64,7 +64,7 @@ public class connection extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         //Log.d("bloodhound", s);
-        //LocActivity.resopnse = s;
+        //LocActivity.response = s;
     }
 }
 
