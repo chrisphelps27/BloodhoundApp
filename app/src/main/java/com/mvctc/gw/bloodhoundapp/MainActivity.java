@@ -3,7 +3,6 @@ package com.mvctc.gw.bloodhoundapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 /*
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //defines all the buttons (3) and sets their onClick to the method below
         Button writeIdBtn = (Button) findViewById(R.id.write_id);
-        Button actAsIdBtn = (Button) findViewById(R.id.act_as_id);
+        Button actAsIdBtn = (Button) findViewById(R.id.tie_to_id);
         Button actAsLocBtn = (Button) findViewById(R.id.act_as_loc);
         writeIdBtn.setOnClickListener(this);
         actAsLocBtn.setOnClickListener(this);
@@ -36,8 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.write_id:
                 intent = new Intent(this, WriteActivity.class);
                 break;
-            case R.id.act_as_id:
-                intent = new Intent(this, SendActivity.class);
+            case R.id.tie_to_id:
+                intent = new Intent(this, LinkActivity.class);
                 break;
             case R.id.act_as_loc:
                 intent = new Intent(this, LocActivity.class);

@@ -54,7 +54,7 @@
         app:layout_constraintVertical_bias="0.498" />
 
     <Button
-        android:id="@+id/act_as_id"
+        android:id="@+id/tie_to_id"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"

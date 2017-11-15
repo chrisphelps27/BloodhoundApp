@@ -5,6 +5,7 @@ import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class GroupActivity extends AppCompatActivity implements View.OnClickListener {
 
     private NfcAdapter mNfcAdapter;
-    boolean isCard = false; /* tells whether they're currently emulating a card which is needed for all the functionality in this activity
+    boolean isCardTied = false; /* tells whether they're currently emulating a card which is needed for all the functionality in this activity
     TODO create if statement that checks if theyve set up their user in card emulation
     */
     boolean inGroup = false; //TODO run if statement that checks if they're in a group yet based on card being emulated
@@ -27,7 +28,12 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-
+        Button addUsers = (Button) findViewById(R.id.add);
+        Button remUsers = (Button) findViewById(R.id.remove);
+        Button createGroup = (Button) findViewById(R.id.createGroup);
+        addUsers.setOnClickListener(this);
+        remUsers.setOnClickListener(this);
+        createGroup.setOnClickListener(this);
 
         if (mNfcAdapter == null) { // Stops if there is no NFC
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
@@ -35,15 +41,13 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-
-
-        if(!isCard) { //stops if they don't have card emulation set up and redirects them to EmulateActivity
+        if(!isCardTied) { //stops if they don't have card emulation set up and redirects them to EmulateActivity
             Toast.makeText(this, "You must set up your ID first", Toast.LENGTH_LONG).show();
             finish();
-            Intent intent = new Intent(this, EmulateActivity.class);
+            Intent intent = new Intent(this, LinkActivity.class);
             startActivity(intent);
         }
-        else{ //if they have card emulation set up
+        else{ //if they have their card tied
             try {
                 int groupID = Integer.parseInt(new connection().execute("getGroup.php", "i=" + id).get());
                 if (groupID != 2) { // make this check if they're already in a group
@@ -79,6 +83,17 @@ public class GroupActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v){
-        //handle buttons
+        switch(v.getId()){
+            case R.id.back:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.add:
+                break;
+            case R.id.remove:
+                break;
+            case R.id.createGroup:
+                break;
+        }
     }
 }
